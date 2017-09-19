@@ -30,7 +30,7 @@ class InsertTagListener
      *
      * @return bool|string
      */
-    public function onReplaceInsertTag(string $tag)
+    public function onReplaceInsertTags(string $tag)
     {
         if (strpos($tag, 'iconic::') !== 0) {
             return false;

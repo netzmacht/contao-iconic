@@ -1,0 +1,47 @@
+{
+  "name": "netzmacht/contao-iconic",
+  "description": "Iconic integration into Contao.",
+  "keywords": [
+    "contao",
+    "iconic",
+    "icons"
+  ],
+  "type": "contao-bundle",
+  "homepage": "https://netzmacht.de",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "David Molineus",
+      "email": "david.molineus@netzmacht.de",
+      "homepage": "https://netzmacht.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/netzmacht/contao-iconic",
+    "irc": "irc://irc.freenode.org/contao.dev",
+    "source": "https://github.com/netzmacht/contao-iconic"
+  },
+  "require": {
+    "php": ">=7.1",
+    "contao/core-bundle": "~4.4",
+    "netzmacht/html": "~2.0@beta"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0.0",
+    "phpcq/all-tasks": "~1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Netzmacht\\Contao\\Iconic\\": "src/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Netzmacht\\Contao\\Iconic\\ContaoManager\\Plugin",
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

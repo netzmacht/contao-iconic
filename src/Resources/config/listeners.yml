@@ -1,0 +1,3 @@
+services:
+  netzmacht.contao_iconic.listeners.insert_tag:
+    class: Netzmacht\Contao\Iconic\Listener\InsertTagListener

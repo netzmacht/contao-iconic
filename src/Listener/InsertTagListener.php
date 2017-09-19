@@ -6,6 +6,7 @@
  * @package    contao-iconic
  * @author     David Molineus <david.molineus@netzmacht.de>
  * @copyright  2017 netzmacht David Molineus. All rights reserved.
+ * @license    LGPL 3.0 http://www.gnu.de/documents/lgpl-3.0.de.html
  * @filesource
  */
 
@@ -33,10 +34,9 @@ class InsertTagListener
     {
         if (strpos($tag, 'iconic::') !== 0) {
             return false;
-
         }
 
-        $parts = explode('?', substr($tag, 8), 2);
+        $parts              = explode('?', substr($tag, 8), 2);
         list($icon, $query) = array_pad($parts, 2, '');
         parse_str($query, $attributes);
 

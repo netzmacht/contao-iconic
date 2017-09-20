@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\Iconic\Listener;
 
 use Netzmacht\Html\Element\StandaloneElement;
+use Netzmacht\Html\Factory;
 
 /**
  * Class InsertTagListener.
@@ -23,6 +24,23 @@ use Netzmacht\Html\Element\StandaloneElement;
  */
 class InsertTagListener
 {
+    /**
+     * Html element factory.
+     *
+     * @var Factory
+     */
+    private $elementFactory;
+
+    /**
+     * InsertTagListener constructor.
+     *
+     * @param Factory $elementFactory Html element factory.
+     */
+    public function __construct(Factory $elementFactory)
+    {
+        $this->elementFactory = $elementFactory;
+    }
+
     /**
      * Handle replace insert tag hook.
      *
@@ -40,7 +58,8 @@ class InsertTagListener
         list($icon, $query) = array_pad($parts, 2, '');
         parse_str($query, $attributes);
 
-        $element = new StandaloneElement('img');
+        /** @var StandaloneElement $element */
+        $element = $this->elementFactory->create('img');
         $element
             ->setAttribute('data-src', $icon . '.svg')
             ->setAttribute('class', 'iconic');
@@ -57,7 +76,6 @@ class InsertTagListener
                         function ($value) {
                             return 'iconic-' . $value;
                         },
-
                         explode(' ', $value)
                     );
 

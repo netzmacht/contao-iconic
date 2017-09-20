@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\Iconic;
 
+use Netzmacht\Contao\Iconic\DependencyInjection\RendererCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -23,5 +25,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class NetzmachtContaoIconicBundle extends Bundle
 {
-
+    /**
+     * {@inheritDoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new RendererCompilerPass());
+    }
 }

@@ -100,7 +100,7 @@ class InsertTagListener
         $element = $this->elementFactory->create('img');
         $element
             ->setAttribute('data-src', $this->svgPath . '/' . $icon . '.svg')
-            ->setAttribute('class', 'iconic');
+            ->addClass('iconic');
 
         foreach ($attributes as $key => $value) {
             switch ($key) {

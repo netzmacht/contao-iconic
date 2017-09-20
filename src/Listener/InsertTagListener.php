@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\Iconic\Listener;
 
+use Contao\StringUtil;
 use Netzmacht\Html\Element\StandaloneElement;
 use Netzmacht\Html\Factory;
 
@@ -74,9 +75,11 @@ class InsertTagListener
 
         $parts = explode('::', $tag);
         $mode  = ($parts[2] ?? $this->defaultMode);
+        $parts = explode('?', $parts[1], 2);
 
-        $parts              = explode('?', $parts[1], 2);
         list($icon, $query) = array_pad($parts, 2, '');
+
+        $query = StringUtil::decodeEntities($query);
         parse_str($query, $attributes);
 
         switch ($mode) {

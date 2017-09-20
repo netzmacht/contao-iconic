@@ -2,6 +2,4 @@ services:
   netzmacht.contao_iconic.listeners.insert_tag:
     class: Netzmacht\Contao\Iconic\Listener\InsertTagListener
     arguments:
-      - '@netzmacht.html.factory'
-      - '%netzmacht.contao_iconic.default_mode%'
-      - '%netzmacht.contao_iconic.svg_path%'
+      - '@netzmacht.contao_iconic.renderer'

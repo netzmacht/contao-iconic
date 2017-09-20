@@ -19,6 +19,7 @@ use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Netzmacht\Contao\Iconic\NetzmachtContaoIconicBundle;
+use Netzmacht\Html\Infrastructure\SymfonyBundle\NetzmachtHtmlBundle;
 
 /**
  * Class Plugin.
@@ -34,7 +35,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create(NetzmachtContaoIconicBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class])
+                ->setLoadAfter([ContaoCoreBundle::class, NetzmachtHtmlBundle::class])
         ];
     }
 }

@@ -32,13 +32,31 @@ class InsertTagListener
     private $elementFactory;
 
     /**
+     * Default render mode.
+     *
+     * @var string
+     */
+    private $defaultMode;
+
+    /**
+     * Svg path.
+     *
+     * @var string
+     */
+    private $svgPath;
+
+    /**
      * InsertTagListener constructor.
      *
      * @param Factory $elementFactory Html element factory.
+     * @param string  $defaultMode    Default render mode.
+     * @param string  $svgPath        SVG path.
      */
-    public function __construct(Factory $elementFactory)
+    public function __construct(Factory $elementFactory, string $defaultMode, string $svgPath)
     {
         $this->elementFactory = $elementFactory;
+        $this->defaultMode    = $defaultMode;
+        $this->svgPath        = $svgPath;
     }
 
     /**
@@ -54,14 +72,34 @@ class InsertTagListener
             return false;
         }
 
-        $parts              = explode('?', substr($tag, 8), 2);
+        $parts = explode('::', $tag);
+        $mode  = ($parts[2] ?? $this->defaultMode);
+
+        $parts              = explode('?', $parts[1], 2);
         list($icon, $query) = array_pad($parts, 2, '');
         parse_str($query, $attributes);
 
+        switch ($mode) {
+            case 'svg':
+            default:
+                return $this->renderSvgImage($icon, $attributes);
+        }
+    }
+
+    /**
+     * Render the svg image.
+     *
+     * @param string $icon       Icon name.
+     * @param array  $attributes Attributes.
+     *
+     * @return string
+     */
+    private function renderSvgImage(string $icon, array $attributes): string
+    {
         /** @var StandaloneElement $element */
         $element = $this->elementFactory->create('img');
         $element
-            ->setAttribute('data-src', $icon . '.svg')
+            ->setAttribute('data-src', $this->svgPath . '/' . $icon . '.svg')
             ->setAttribute('class', 'iconic');
 
         foreach ($attributes as $key => $value) {

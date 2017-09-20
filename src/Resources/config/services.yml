@@ -1,0 +1,14 @@
+services:
+  netzmacht.contao_iconic.renderer:
+    class: Netzmacht\Contao\Iconic\Renderer\MultipleModeRenderer
+    arguments:
+      - []
+      - '%netzmacht.contao_iconic.default_mode%'
+
+  netzmacht.contao_iconic.renderer.svg_icon:
+    class: Netzmacht\Contao\Iconic\Renderer\SvgIconRenderer
+    arguments:
+      - '@netzmacht.html.factory'
+      - '%netzmacht.contao_iconic.svg_path%'
+    tags:
+      - { name: 'contao_iconic.renderer', mode: 'svg'}

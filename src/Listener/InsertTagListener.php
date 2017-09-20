@@ -51,12 +51,21 @@ class InsertTagListener
                     $element->setAttribute($key, $value);
                     break;
 
+                case 'i':
                 case 'iclass':
-                    $element->addClass('iconic-' . $value);
+                    $values = array_map(
+                        function ($value) {
+                            return 'iconic-' . $value;
+                        },
+
+                        explode(' ', $value)
+                    );
+
+                    $element->addClasses($values);
                     break;
 
                 case 'class':
-                    $element->addClass($value);
+                    $element->addClasses(explode(' ', $value));
                     break;
 
                 default:

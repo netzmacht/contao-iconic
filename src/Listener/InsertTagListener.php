@@ -60,6 +60,7 @@ class InsertTagListener
 
         list($icon, $query) = array_pad($parts, 2, '');
 
+        $query = str_replace('+', '&', $query);
         $query = StringUtil::decodeEntities($query);
         parse_str($query, $attributes);
 

@@ -56,6 +56,11 @@ class SvgIconRenderer implements Renderer
      */
     public function render(string $icon, array $attributes = [], ?string $mode = null): string
     {
+        $GLOBALS['TL_HEAD'][] = sprintf(
+            '<link rel="preload" href="%s" as="image">',
+            $this->svgPath . '/' . $icon . '.svg'
+        );
+
         /** @var StandaloneElement $element */
         $element = $this->elementFactory->create('img');
         $element

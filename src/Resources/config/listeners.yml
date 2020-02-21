@@ -1,5 +1,6 @@
 services:
   netzmacht.contao_iconic.listeners.insert_tag:
     class: Netzmacht\Contao\Iconic\Listener\InsertTagListener
+    public: true
     arguments:
       - '@netzmacht.contao_iconic.renderer'
